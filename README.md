@@ -17,6 +17,14 @@ bundle install
 
 Or you can use Docker.
 
+## Chose formats for generation:
+
+In Rakefile, please choose a format: csv, xls, html, json
+
+example: 
+
+` document_format = csv`
+
 ## Genarate report:
 
 `$ rake generate_report`
