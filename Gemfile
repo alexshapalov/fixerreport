@@ -9,6 +9,7 @@ gem 'dotenv'
 gem 'net-http'
 gem 'time'
 gem 'csv'
+gem 'spreadsheet'
 
 group :development, :test do
   gem 'pry-byebug'

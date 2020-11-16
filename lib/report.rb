@@ -1,27 +1,19 @@
-require 'pry'
+require 'date'
 
 class Report
   API_URL = "http://127.0.0.1:3088/api/v1/data/".freeze
 
-  def initialize(day, document_format)
-    @day = day
+  def initialize(document_format)
+    @day = Date.today
     @document_format = document_format
     @arr_with_delta = []
   end
 
   def generate
-    CsvReport.create_report(@day, find_delta(@day), get_rate_for_day(@day))
+    @document_format.generate(@day, find_delta(@day), get_rate_for_day(@day))
   end
 
-  def find_delta(day)
-    get_rate_for_day = get_rate_for_day(@day)
-
-    dates.each do |day|
-      delta = get_rate_for_day - get_rate_for_day(day)
-      @arr_with_delta << delta
-    end
-    @arr_with_delta
-  end
+  private
 
   def get_rate_for_day(date)
     uri = URI("#{API_URL}#{date}/EUR")
@@ -39,15 +31,14 @@ class Report
       Date.today.prev_year
     ]
   end
-end
+  
+  def find_delta(day)
+    get_rate_for_day = get_rate_for_day(day)
 
-class CsvReport
-  def self.create_report(day, arr_with_delta, get_rate_for_day)
-    CSV.open("reports/#{day}.csv", "wb") do |csv|
-      csv << ["today", "yesterday delta", "7 days ago delta", "1 month ago delta", "1 year ago delta", "rate today"]
-      arr_with_delta.each do |delta|
-        csv << [day, delta, delta, delta, delta, get_rate_for_day]
-      end
+    dates.each do |day|
+      delta = get_rate_for_day - get_rate_for_day(day)
+      @arr_with_delta << delta
     end
+    @arr_with_delta
   end
 end
