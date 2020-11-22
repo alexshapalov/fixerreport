@@ -3,23 +3,28 @@
 require 'net/http'
 require 'csv'
 require 'json'
+
 require_relative 'lib/report'
-require_relative 'lib/csv_reporter'
-require_relative 'lib/json_reporter'
-require_relative 'lib/html_reporter'
-require_relative 'lib/xls_reporter'
+require_relative 'lib/formats/csv_reporter'
+require_relative 'lib/formats/json_reporter'
+require_relative 'lib/formats/html_reporter'
+require_relative 'lib/formats/xls_reporter'
 
-desc "generate a report on currency developmen"
+desc "generate a report on currency development"
 task :generate_report do
-  csv = CsvReport.new
-  json = JsonReport.new
-  html = HtmlReport.new
-  xls = XlsReport.new
+  if ENV['DOCUMENT_FORMAT'].empty?
+    puts "Please chose the right format"
+  else 
+    document_format = ENV['DOCUMENT_FORMAT'].to_sym
 
-  # Chose formats: csv, xls, html, json
-  # example: 
-  # document_format = csv
-  document_format = json
-  
-  Report.new(document_format).generate
+    formats = {
+      csv: CsvReport.new,
+      html: HtmlReport.new,
+      xlx: XlsReport.new,
+      json: JsonReport.new,
+    }
+    format = formats[document_format]
+
+    Report.new(format).generate
+  end
 end

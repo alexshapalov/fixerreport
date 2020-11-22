@@ -1,5 +1,3 @@
-require 'json'
-
 class HtmlReport
   def generate(day, arr_with_delta, get_rate_for_day)
     fileHtml = File.new("reports/#{day}.html", "w+")

@@ -8,10 +8,10 @@ require 'net/http'
 require 'csv'
 require 'json'
 require_relative '../lib/report'
-require_relative '../lib/csv_reporter'
-require_relative '../lib/json_reporter'
-require_relative '../lib/html_reporter'
-require_relative '../lib/xls_reporter'
+require_relative '../lib/formats/csv_reporter'
+require_relative '../lib/formats/json_reporter'
+require_relative '../lib/formats/html_reporter'
+require_relative '../lib/formats/xls_reporter'
 
 def app
   described_class
