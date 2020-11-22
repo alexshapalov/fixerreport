@@ -36,32 +36,3 @@ The app is available as open-source under the terms of the [MIT License](http://
 ## Copyright
 
 Copyright © 2020 FixerData
-
-
-
-
-
-
-
-
-
-
-
-# Chose formats: csv, xls, html, json
-# example: 
-# rake generate_report DOCUMENT_FORMAT=csv
-desc "generate a report on currency development"
-task :generate_report do
-  document_format = ENV['DOCUMENT_FORMAT'].to_sym
- 
-  formats = {
-    csv: CsvReport.new
-    # html: HtmlReport.new,
-    # xlx: XlsReport.new,
-    # json: JsonReport.new
-  }
-
-  p document_format = formats[document_format]
-
-  Report.new(document_format).generate
-end

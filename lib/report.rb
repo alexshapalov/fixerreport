@@ -4,7 +4,7 @@ class Report
   API_URL = "http://127.0.0.1:3088/api/v1/data/".freeze
 
   def initialize(document_format)
-    @day = Date.today - 1 
+    @day = Date.today
     @document_format = document_format
     @arr_with_delta = []
   end
