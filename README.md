@@ -15,19 +15,15 @@ rvm use 2.7.0
 bundle install
 ```
 
-Or you can use Docker.
+Or you can use Docker
 
-## Genarate report:
+## Genarate report
 
 When you run the rake task, please chose the format: csv, xls, html, json
 
 example: 
 
 ` rake generate_report DOCUMENT_FORMAT=csv`
-
-## Generate report:
-
-`$ rake generate_report`
 
 ## License
 
