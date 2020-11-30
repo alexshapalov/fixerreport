@@ -4,7 +4,7 @@ RSpec.describe Report do
   describe 'Genarate reports for all formats' do
     it 'CSV report' do 
       csv = CsvReport.new
-      Report.new(csv).generate
+      Report.new(document_format: csv).generate
 
       csv_file = File.read("././reports/2020-11-16.csv")
 
@@ -15,7 +15,7 @@ RSpec.describe Report do
 
     it 'HTML report' do 
       html = HtmlReport.new
-      Report.new(html).generate
+      Report.new(document_format: html).generate
 
       html_file = File.read("././reports/2020-11-16.html")
 
@@ -26,7 +26,7 @@ RSpec.describe Report do
 
     it 'JSON report' do 
       json = JsonReport.new
-      Report.new(json).generate
+      Report.new(document_format: json).generate
 
       json_file = File.read("././reports/2020-11-16.json")
 
@@ -37,7 +37,7 @@ RSpec.describe Report do
 
     xit 'XLS report' do 
       xlsx = XlsReport.new
-      Report.new(xlsx).generate
+      Report.new(document_format: xlsx).generate
 
       xls_file = File.read("././reports/2020-11-16.xlsx")
 

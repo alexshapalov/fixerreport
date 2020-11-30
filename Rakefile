@@ -1,8 +1,6 @@
 #!/usr/bin/env rake
 
 require 'net/http'
-require 'csv'
-require 'json'
 
 require_relative 'lib/report'
 require_relative 'lib/formats/csv_reporter'
@@ -25,6 +23,6 @@ task :generate_report do
     }
     format = formats[document_format]
 
-    Report.new(format).generate
+    Report.new(document_format: format).generate
   end
 end
