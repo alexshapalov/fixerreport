@@ -10,9 +10,7 @@ require_relative 'lib/formats/xls_reporter'
 
 desc "generate a report on currency development"
 task :generate_report do
-  if ENV['DOCUMENT_FORMAT'].empty?
-    puts "Please chose the right format"
-  else 
+  unless ENV['DOCUMENT_FORMAT'].empty?
     document_format = ENV['DOCUMENT_FORMAT'].to_sym
 
     formats = {
@@ -24,5 +22,22 @@ task :generate_report do
     format = formats[document_format]
 
     Report.new(document_format: format).generate
+  else
+    puts <<-END_HELP
+
+    Please chose the right format
+
+    EXAMPLE: 
+
+    rake generate_report DOCUMENT_FORMAT=csv
+
+    rake generate_report DOCUMENT_FORMAT=json
+
+    rake generate_report DOCUMENT_FORMAT=html
+
+    rake generate_report DOCUMENT_FORMAT=xml 
+
+END_HELP
+
   end
 end
