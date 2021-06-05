@@ -31,4 +31,5 @@ The app is available as open-source under the terms of the [MIT License](http://
 
 ## Copyright
 
-Copyright © 2020 FixerData
+Copyright © 2021 FixerData
+
